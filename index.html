@@ -546,7 +546,116 @@
   .wpp-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
   .wpp-float svg { width: 28px; height: 28px; fill: white; }
 
-  /* DIVISOR */
+  .formulario-contato {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+    padding: 48px;
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .form-grupo label {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+  }
+
+  .form-grupo .opcional {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.25);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .form-grupo input,
+  .form-grupo select,
+  .form-grupo textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.85);
+    padding: 13px 16px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.93rem;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    border-radius: 1px;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .form-grupo select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  .form-grupo select option {
+    background: #1a3a2e;
+    color: white;
+  }
+
+  .form-grupo input::placeholder,
+  .form-grupo textarea::placeholder {
+    color: rgba(255,255,255,0.25);
+  }
+
+  .form-grupo input:focus,
+  .form-grupo select:focus,
+  .form-grupo textarea:focus {
+    border-color: var(--bege);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .form-grupo textarea { resize: vertical; min-height: 90px; }
+
+  .btn-form-wpp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 17px 36px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s, transform 0.2s;
+    border-radius: 2px;
+    margin-top: 8px;
+  }
+  .btn-form-wpp:hover { background: #1db954; transform: translateY(-1px); }
+  .btn-form-wpp svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+  @media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .formulario-contato { padding: 32px 24px; }
+  }
   .divisor {
     width: 48px;
     height: 1px;
@@ -611,15 +720,7 @@
     </div>
   </div>
   <div class="hero-image">
-    <!-- Placeholder para foto da Ivaneide -->
-    <div style="width:100%;height:100%;background:linear-gradient(160deg,#1a3a2e 0%,#2c5242 60%,#3a6b54 100%);display:flex;align-items:center;justify-content:center;">
-      <div style="text-align:center;padding:40px;">
-        <div style="width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.06);border:2px solid rgba(196,168,130,0.3);margin:0 auto 24px;display:flex;align-items:center;justify-content:center;">
-          <svg width="60" height="60" viewBox="0 0 24 24" fill="rgba(196,168,130,0.5)"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-        </div>
-        <p style="font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.5);font-size:0.9rem;">Adicione sua foto aqui</p>
-      </div>
-    </div>
+    <img src="ivaneide.png" alt="Ivaneide Alves, Psicanalista">
     <div class="hero-image-overlay"></div>
     <div class="hero-quote">
       "Eu não precisava de mais força.<br>Eu precisava de consciência."
@@ -629,7 +730,8 @@
 
 <!-- SOBRE -->
 <section class="sobre" id="sobre">
-  <div class="sobre-visual" style="background:linear-gradient(160deg,#0f2218,#1a3a2e);">
+  <div class="sobre-visual" style="position:relative;overflow:hidden;">
+    <img src="ivaneide_neutro.png" alt="Ivaneide Alves" style="width:100%;height:100%;object-fit:cover;object-position:center top;position:absolute;inset:0;">
     <div class="sobre-visual-inner">
       <span class="sobre-visual-tag">Minha história</span>
       <p class="sobre-visual-text">
@@ -769,13 +871,43 @@
     Você precisa de <em>consciência.</em>
   </h2>
   <p class="cta-final-sub">
-    O atendimento é online, seguro e acolhedor. Entre em contato e vamos conversar sobre como posso te ajudar.
+    Preencha o formulário abaixo e você será direcionada para uma conversa no WhatsApp — acolhedora, sem compromisso.
   </p>
-  <a href="https://wa.me/5584881102740?text=Ol%C3%A1%2C%20Ivaneide!%20Vi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20atendimento." class="btn-whatsapp" target="_blank">
-    <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.557 4.115 1.532 5.843L.057 23.571c-.072.272.179.524.452.452l5.758-1.477A11.952 11.952 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.929 0-3.741-.518-5.3-1.424l-.38-.224-3.938 1.01 1.034-3.82-.248-.393A9.956 9.956 0 0 1 2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10z"/></svg>
-    Falar com a Ivaneide no WhatsApp
-  </a>
-  <p class="cta-aviso">Atendimento 100% online · (84) 8811-0274</p>
+
+  <div class="formulario-contato">
+    <div class="form-grid">
+      <div class="form-grupo">
+        <label for="nome">Seu nome</label>
+        <input type="text" id="nome" placeholder="Como posso te chamar?">
+      </div>
+      <div class="form-grupo">
+        <label for="cidade">Cidade</label>
+        <input type="text" id="cidade" placeholder="De onde você é?">
+      </div>
+    </div>
+    <div class="form-grupo">
+      <label for="motivo">O que te trouxe até aqui?</label>
+      <select id="motivo">
+        <option value="" disabled selected>Selecione o que mais se aproxima...</option>
+        <option value="Repito padrões nos relacionamentos e quero entender o porquê">Repito padrões nos relacionamentos</option>
+        <option value="Tenho dificuldade de acreditar em mim mesma e precisofortalecer minha autoestima">Dificuldade de acreditar em mim mesma</option>
+        <option value="Sinto que estou apenas sobrevivendo emocionalmente, no automático">Sobrevivência emocional / vazio interior</option>
+        <option value="Tenho traços da infância que ainda aparecem nas minhas relações adultas">Traços da infância nas relações adultas</option>
+        <option value="Sofro de dependência emocional e quero romper esse ciclo">Dependência emocional</option>
+        <option value="Tenho traumas não processados que ainda me afetam hoje">Trauma não processado</option>
+        <option value="Quero entender melhor como a psicanálise pode me ajudar">Quero conhecer melhor a psicanálise</option>
+      </select>
+    </div>
+    <div class="form-grupo">
+      <label for="mensagem">Quer compartilhar algo mais? <span class="opcional">(opcional)</span></label>
+      <textarea id="mensagem" rows="3" placeholder="Pode escrever à vontade..."></textarea>
+    </div>
+    <button onclick="enviarWhatsApp()" class="btn-form-wpp">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.557 4.115 1.532 5.843L.057 23.571c-.072.272.179.524.452.452l5.758-1.477A11.952 11.952 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.929 0-3.741-.518-5.3-1.424l-.38-.224-3.938 1.01 1.034-3.82-.248-.393A9.956 9.956 0 0 1 2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar e continuar no WhatsApp
+    </button>
+    <p class="cta-aviso">Atendimento 100% online · (84) 8811-0274</p>
+  </div>
 </section>
 
 <!-- FOOTER -->
@@ -793,6 +925,25 @@
 </a>
 
 <script>
+  function enviarWhatsApp() {
+    const nome = document.getElementById('nome').value.trim();
+    const cidade = document.getElementById('cidade').value.trim();
+    const motivo = document.getElementById('motivo').value;
+    const mensagem = document.getElementById('mensagem').value.trim();
+
+    if (!nome) { alert('Por favor, informe seu nome.'); return; }
+    if (!motivo) { alert('Por favor, selecione o motivo que mais se aproxima da sua situação.'); return; }
+
+    let texto = `Olá, Ivaneide! Me chamo *${nome}*`;
+    if (cidade) texto += `, sou de *${cidade}*`;
+    texto += `.\n\nO que me trouxe até aqui: *${motivo}*`;
+    if (mensagem) texto += `\n\n${mensagem}`;
+    texto += `\n\nGostaria de saber mais sobre o atendimento online. 🌿`;
+
+    const url = `https://wa.me/5584881102740?text=${encodeURIComponent(texto)}`;
+    window.open(url, '_blank');
+  }
+
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
