@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ivaneide Alves | Psicanalista</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --verde: #1a3a2e;
+    --verde-medio: #2c5242;
+    --salvia: #8a9e72;
+    --bege: #c4a882;
+    --creme: #f0ebe0;
+    --creme-claro: #f8f5f0;
+    --branco: #ffffff;
+    --texto: #2a2a2a;
+    --texto-claro: #6b6b6b;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    color: var(--texto);
+    background: var(--branco);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(196,168,130,0.2);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.07); }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--verde);
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+  }
+  .nav-logo span { display: block; font-size: 0.7rem; font-family: 'Lato', sans-serif; font-weight: 300; color: var(--texto-claro); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--texto-claro); transition: color 0.2s; font-weight: 400; }
+  .nav-links a:hover { color: var(--verde); }
+
+  .nav-cta {
+    background: var(--verde);
+    color: var(--branco);
+    padding: 10px 22px;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-weight: 400;
+  }
+  .nav-cta:hover { background: var(--verde-medio); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 5% 80px 8%;
+    background: var(--creme-claro);
+    position: relative;
+  }
+
+  .hero-text::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 15%; bottom: 15%;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--bege), transparent);
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--salvia);
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    line-height: 1.2;
+    color: var(--verde);
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+  .hero-title em { font-style: italic; color: var(--bege); }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    color: var(--texto-claro);
+    max-width: 420px;
+    font-weight: 300;
+    margin-bottom: 48px;
+    line-height: 1.8;
+  }
+
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--verde);
+    color: var(--branco);
+    padding: 15px 32px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+    font-weight: 400;
+  }
+  .btn-primary:hover { background: var(--verde-medio); transform: translateY(-1px); }
+  .btn-primary svg { width: 18px; height: 18px; }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 32px;
+    border: 1.5px solid var(--bege);
+    color: var(--verde);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    font-weight: 400;
+  }
+  .btn-secondary:hover { background: var(--bege); color: var(--branco); }
+
+  .hero-image {
+    position: relative;
+    overflow: hidden;
+    background: var(--verde);
+  }
+  .hero-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 0.85;
+    mix-blend-mode: luminosity;
+  }
+  .hero-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26,58,46,0.4) 0%, rgba(26,58,46,0.1) 100%);
+  }
+  .hero-quote {
+    position: absolute;
+    bottom: 48px;
+    left: 40px;
+    right: 40px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.5;
+    border-left: 2px solid var(--bege);
+    padding-left: 20px;
+  }
+
+  /* SOBRE */
+  .sobre {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 80vh;
+  }
+
+  .sobre-visual {
+    background: var(--verde);
+    position: relative;
+    overflow: hidden;
+  }
+  .sobre-visual-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 48px;
+    background: linear-gradient(to top, rgba(26,58,46,0.95) 0%, transparent 60%);
+  }
+  .sobre-visual-tag {
+    display: inline-block;
+    background: rgba(196,168,130,0.2);
+    border: 1px solid rgba(196,168,130,0.4);
+    color: var(--bege);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    margin-bottom: 16px;
+  }
+  .sobre-visual-text {
+    font-family: 'Playfair Display', serif;
+    color: var(--branco);
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .sobre-conteudo {
+    padding: 80px 8% 80px 6%;
+    background: var(--creme-claro);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--salvia);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    color: var(--verde);
+    margin-bottom: 28px;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+
+  .sobre-texto {
+    color: var(--texto-claro);
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+
+  .sobre-destaque {
+    margin: 32px 0;
+    padding: 20px 24px;
+    border-left: 3px solid var(--bege);
+    background: rgba(196,168,130,0.06);
+  }
+  .sobre-destaque p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--verde);
+    line-height: 1.6;
+  }
+
+  /* COMO FUNCIONA */
+  .como-funciona {
+    background: var(--verde);
+    padding: 100px 5%;
+    text-align: center;
+  }
+  .como-funciona .section-eyebrow { color: var(--salvia); }
+  .como-funciona .section-title { color: var(--branco); margin-bottom: 64px; }
+
+  .etapas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 960px;
+    margin: 0 auto 60px;
+  }
+
+  .etapa {
+    background: rgba(255,255,255,0.04);
+    padding: 44px 32px;
+    text-align: left;
+    position: relative;
+    transition: background 0.3s;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .etapa:hover { background: rgba(255,255,255,0.08); }
+
+  .etapa-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: rgba(196,168,130,0.3);
+    line-height: 1;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .etapa-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--branco);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+
+  .etapa-texto {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* PARA VOCÊ */
+  .para-voce {
+    padding: 100px 5%;
+    background: var(--creme-claro);
+  }
+
+  .para-voce-intro {
+    max-width: 600px;
+    margin-bottom: 64px;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .card {
+    background: var(--branco);
+    padding: 40px 32px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-bottom: 2px solid transparent;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    border-bottom-color: var(--bege);
+  }
+
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 20px;
+    opacity: 0.6;
+  }
+
+  .card-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--verde);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .card-texto {
+    color: var(--texto-claro);
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.75;
+  }
+
+  /* DEPOIMENTOS */
+  .depoimentos {
+    background: var(--branco);
+    padding: 100px 5%;
+  }
+
+  .depoimentos-header {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto 64px;
+  }
+
+  .depoimentos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .depoimento {
+    padding: 36px;
+    background: var(--creme-claro);
+    position: relative;
+  }
+
+  .depoimento::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: var(--bege);
+    opacity: 0.4;
+    position: absolute;
+    top: 16px; left: 28px;
+    line-height: 1;
+  }
+
+  .depoimento-texto {
+    font-size: 0.95rem;
+    color: var(--texto-claro);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .depoimento-nome {
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--salvia);
+    font-weight: 700;
+  }
+
+  /* CTA FINAL */
+  .cta-final {
+    background: linear-gradient(135deg, var(--verde) 0%, var(--verde-medio) 100%);
+    padding: 120px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.02);
+    pointer-events: none;
+  }
+
+  .cta-final-eyebrow { color: var(--salvia); margin-bottom: 20px; }
+
+  .cta-final-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--branco);
+    font-weight: 400;
+    margin-bottom: 20px;
+    line-height: 1.25;
+  }
+  .cta-final-title em { font-style: italic; color: var(--bege); }
+
+  .cta-final-sub {
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    font-size: 1.05rem;
+    max-width: 480px;
+    margin: 0 auto 48px;
+    line-height: 1.8;
+  }
+
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #25D366;
+    color: var(--branco);
+    padding: 18px 40px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+    border-radius: 2px;
+  }
+  .btn-whatsapp:hover { background: #1db954; transform: translateY(-2px); }
+  .btn-whatsapp svg { width: 22px; height: 22px; }
+
+  .cta-aviso {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.05em;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #0f2218;
+    padding: 48px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+  }
+  .footer-logo span { display: block; font-family: 'Lato', sans-serif; font-size: 0.7rem; color: rgba(255,255,255,0.35); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px; }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.05em;
+  }
+
+  /* FLUTUANTE WHATSAPP */
+  .wpp-float {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 200;
+    width: 56px;
+    height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .wpp-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
+  .wpp-float svg { width: 28px; height: 28px; fill: white; }
+
+  /* DIVISOR */
+  .divisor {
+    width: 48px;
+    height: 1px;
+    background: var(--bege);
+    margin: 20px 0 32px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero, .sobre { grid-template-columns: 1fr; }
+    .hero-image { min-height: 55vw; }
+    .etapas { grid-template-columns: 1fr; gap: 1px; }
+    .depoimentos-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .sobre-visual { min-height: 300px; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-text { padding: 48px 6%; }
+    .sobre-conteudo { padding: 48px 6%; }
+    .como-funciona, .para-voce, .depoimentos { padding: 72px 6%; }
+    .cta-final { padding: 80px 6%; }
+    footer { flex-direction: column; align-items: flex-start; }
+    .wpp-float { bottom: 20px; right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">
+    Ivaneide Alves
+    <span>Psicanalista</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#como-funciona">Como funciona</a></li>
+    <li><a href="#para-voce">Para você</a></li>
+  </ul>
+  <a href="https://wa.me/5584881102740?text=Ol%C3%A1%2C%20Ivaneide!%20Gostaria%20de%20saber%20mais%20sobre%20o%20atendimento%20online." class="nav-cta" target="_blank">Agendar conversa</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">Psicanálise Online · Cura Emocional</p>
+    <h1 class="hero-title">
+      O que você não<br>
+      identifica em você,<br>
+      <em>te controla.</em>
+    </h1>
+    <p class="hero-subtitle">
+      Ajudo mulheres a compreenderem seus traumas, fortalecerem a autoestima e romperem padrões emocionais que se repetem silenciosamente.
+    </p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5584881102740?text=Ol%C3%A1%2C%20Ivaneide!%20Gostaria%20de%20saber%20mais%20sobre%20o%20atendimento%20online." class="btn-primary" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.557 4.115 1.532 5.843L.057 23.571c-.072.272.179.524.452.452l5.758-1.477A11.952 11.952 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.929 0-3.741-.518-5.3-1.424l-.38-.224-3.938 1.01 1.034-3.82-.248-.393A9.956 9.956 0 0 1 2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Quero começar
+      </a>
+      <a href="#sobre" class="btn-secondary">Conheça meu trabalho</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <!-- Placeholder para foto da Ivaneide -->
+    <div style="width:100%;height:100%;background:linear-gradient(160deg,#1a3a2e 0%,#2c5242 60%,#3a6b54 100%);display:flex;align-items:center;justify-content:center;">
+      <div style="text-align:center;padding:40px;">
+        <div style="width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.06);border:2px solid rgba(196,168,130,0.3);margin:0 auto 24px;display:flex;align-items:center;justify-content:center;">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="rgba(196,168,130,0.5)"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        </div>
+        <p style="font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.5);font-size:0.9rem;">Adicione sua foto aqui</p>
+      </div>
+    </div>
+    <div class="hero-image-overlay"></div>
+    <div class="hero-quote">
+      "Eu não precisava de mais força.<br>Eu precisava de consciência."
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="sobre-visual" style="background:linear-gradient(160deg,#0f2218,#1a3a2e);">
+    <div class="sobre-visual-inner">
+      <span class="sobre-visual-tag">Minha história</span>
+      <p class="sobre-visual-text">
+        "Eu organizava casas.<br>Hoje eu organizo interiores.<br>Porque um dia precisei organizar o meu."
+      </p>
+    </div>
+  </div>
+  <div class="sobre-conteudo">
+    <p class="section-eyebrow">Sobre mim</p>
+    <h2 class="section-title">Uma jornada de dentro<br>para fora</h2>
+    <div class="divisor"></div>
+    <p class="sobre-texto">
+      Já fui movida por impulsos que pareciam decisões conscientes. Escolhia rápido, sentia intensamente, reagia sem perceber — e depois colhia consequências que me feriam.
+    </p>
+    <p class="sobre-texto">
+      Não era falta de inteligência. Era dor não curada conduzindo minhas escolhas. Eu repetia padrões porque minhas feridas ainda estavam decidindo por mim.
+    </p>
+
+    <div class="sobre-destaque">
+      <p>O que não é identificado nos domina. O que não é ressignificado, se repete.</p>
+    </div>
+
+    <p class="sobre-texto">
+      Hoje minha missão é ajudar pessoas a reconhecerem as emoções não curadas que estão por trás de suas decisões automáticas — para que deixem de reagir à dor e passem a agir com clareza, maturidade emocional e assertividade.
+    </p>
+    <p class="sobre-texto" style="font-weight:400;color:var(--verde);">
+      — Ivaneide Alves, Psicanalista
+    </p>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="como-funciona" id="como-funciona">
+  <p class="section-eyebrow">Processo terapêutico</p>
+  <h2 class="section-title">Como é o atendimento<br>com a Ivaneide</h2>
+
+  <div class="etapas">
+    <div class="etapa">
+      <span class="etapa-num">01</span>
+      <h3 class="etapa-titulo">Primeiro contato</h3>
+      <p class="etapa-texto">Uma conversa inicial pelo WhatsApp para entender o que você está vivendo e como posso te ajudar, sem compromisso.</p>
+    </div>
+    <div class="etapa">
+      <span class="etapa-num">02</span>
+      <h3 class="etapa-titulo">Sessões online</h3>
+      <p class="etapa-texto">Atendimento por videochamada, no conforto da sua casa. Sessões semanais de 50 minutos, em horário combinado.</p>
+    </div>
+    <div class="etapa">
+      <span class="etapa-num">03</span>
+      <h3 class="etapa-titulo">Processo de cura</h3>
+      <p class="etapa-texto">Juntos, exploramos o que está por trás dos seus padrões — para que você comece a agir com consciência, não com dor.</p>
+    </div>
+  </div>
+
+  <a href="https://wa.me/5584881102740?text=Ol%C3%A1%2C%20Ivaneide!%20Gostaria%20de%20agendar%20uma%20conversa%20inicial." class="btn-primary" target="_blank" style="margin:0 auto;">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.557 4.115 1.532 5.843L.057 23.571c-.072.272.179.524.452.452l5.758-1.477A11.952 11.952 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.929 0-3.741-.518-5.3-1.424l-.38-.224-3.938 1.01 1.034-3.82-.248-.393A9.956 9.956 0 0 1 2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    Agendar conversa inicial
+  </a>
+</section>
+
+<!-- PARA VOCÊ -->
+<section class="para-voce" id="para-voce">
+  <div class="para-voce-intro">
+    <p class="section-eyebrow">Para quem é</p>
+    <h2 class="section-title">Talvez você se reconheça aqui</h2>
+    <div class="divisor"></div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#1a3a2e" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+      <h3 class="card-titulo">Repete padrões nos relacionamentos</h3>
+      <p class="card-texto">Sente que sempre atrai o mesmo tipo de pessoa ou vive as mesmas situações dolorosas, mesmo prometendo a si mesma que seria diferente.</p>
+    </div>
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#1a3a2e" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" d="M8 15s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+      <h3 class="card-titulo">Dificuldade de acreditar em si mesma</h3>
+      <p class="card-texto">A autoestima frágil te faz duvidar das suas escolhas, depender da aprovação dos outros e se sentir "insuficiente" com frequência.</p>
+    </div>
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#1a3a2e" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h3 class="card-titulo">Sobrevivência emocional</h3>
+      <p class="card-texto">Está funcionando no automático — trabalhando, cuidando de todos — mas por dentro sente um vazio, uma exaustão que vai além do físico.</p>
+    </div>
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#1a3a2e" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      <h3 class="card-titulo">Traços da infância ainda presentes</h3>
+      <p class="card-texto">Reações desproporcionais, medos sem explicação clara, dificuldade com limites — sinais de que a criança interior ainda precisa de cuidado.</p>
+    </div>
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#1a3a2e" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      <h3 class="card-titulo">Dependência emocional</h3>
+      <p class="card-texto">Dificuldade em estar só, medo do abandono, necessidade excessiva de validação — ciclos que se repetem e te esgotam.</p>
+    </div>
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#1a3a2e" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg>
+      <h3 class="card-titulo">Trauma não processado</h3>
+      <p class="card-texto">Vivências dolorosas do passado que o tempo não curou — e que continuam moldando suas reações e suas escolhas no presente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos">
+  <div class="depoimentos-header">
+    <p class="section-eyebrow">Quem já passou por aqui</p>
+    <h2 class="section-title">Transformações reais</h2>
+  </div>
+
+  <div class="depoimentos-grid">
+    <div class="depoimento">
+      <p class="depoimento-texto">
+        Finalmente entendi por que eu repetia os mesmos relacionamentos. A Ivaneide me ajudou a ver padrões que eu nunca tinha percebido — e hoje me sinto muito mais inteira.
+      </p>
+      <span class="depoimento-nome">— Paciente, atendimento online</span>
+    </div>
+    <div class="depoimento">
+      <p class="depoimento-texto">
+        Nunca pensei que a psicanálise online pudesse ser tão profunda. O acolhimento da Ivaneide desde a primeira sessão me deu segurança para abrir coisas que eu nunca tinha falado com ninguém.
+      </p>
+      <span class="depoimento-nome">— Paciente, atendimento online</span>
+    </div>
+    <div class="depoimento">
+      <p class="depoimento-texto">
+        Eu vivia no automático, sobrevivendo emocionalmente. Depois do trabalho com a Ivaneide, comecei a entender minhas emoções em vez de só reagir a elas. Foi libertador.
+      </p>
+      <span class="depoimento-nome">— Paciente, atendimento online</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <p class="section-eyebrow cta-final-eyebrow">Dê o primeiro passo</p>
+  <h2 class="cta-final-title">
+    Você não precisa de mais força.<br>
+    Você precisa de <em>consciência.</em>
+  </h2>
+  <p class="cta-final-sub">
+    O atendimento é online, seguro e acolhedor. Entre em contato e vamos conversar sobre como posso te ajudar.
+  </p>
+  <a href="https://wa.me/5584881102740?text=Ol%C3%A1%2C%20Ivaneide!%20Vi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20atendimento." class="btn-whatsapp" target="_blank">
+    <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.557 4.115 1.532 5.843L.057 23.571c-.072.272.179.524.452.452l5.758-1.477A11.952 11.952 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.929 0-3.741-.518-5.3-1.424l-.38-.224-3.938 1.01 1.034-3.82-.248-.393A9.956 9.956 0 0 1 2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    Falar com a Ivaneide no WhatsApp
+  </a>
+  <p class="cta-aviso">Atendimento 100% online · (84) 8811-0274</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    Ivaneide Alves
+    <span>Psicanalista · Cura Emocional e Traumas</span>
+  </div>
+  <p class="footer-copy">© 2024 Ivaneide Alves · Todos os direitos reservados</p>
+</footer>
+
+<!-- BOTÃO FLUTUANTE WHATSAPP -->
+<a href="https://wa.me/5584881102740?text=Ol%C3%A1%2C%20Ivaneide!%20Gostaria%20de%20saber%20mais%20sobre%20o%20atendimento%20online." class="wpp-float" target="_blank" title="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.557 4.115 1.532 5.843L.057 23.571c-.072.272.179.524.452.452l5.758-1.477A11.952 11.952 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.929 0-3.741-.518-5.3-1.424l-.38-.224-3.938 1.01 1.034-3.82-.248-.393A9.956 9.956 0 0 1 2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
+</body>
+</html>
